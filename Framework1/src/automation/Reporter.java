@@ -9,5 +9,4 @@ public class Reporter
 		org.testng.Reporter.log(message);
 		org.testng.Reporter.log("<br/>");
 	}
-
 }

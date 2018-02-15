@@ -48,12 +48,6 @@ public class EmailHelper extends Task
 		this.folderPath = folderPath;
 	}
 
-	
-//	protected static String captureErrorScreen(String timeStemp) throws IOException
-//	{
-//		return captureErrorScreen(null, timeStemp);
-//	}
-
 	protected static String captureErrorScreen(String timeStemp) throws IOException
 	{
 		String path = "";

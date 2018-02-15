@@ -3,9 +3,6 @@
  */
 package automation;
 
-/**
- * @author manjayraj.sompura
- */
 public class SeleniumEnumPage
 {
 	public enum ChromeProfile
