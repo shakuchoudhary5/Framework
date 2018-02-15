@@ -24,16 +24,17 @@ public class DownloadVerifier
 		int timeInMinutes=time*60;
 		int count=0;
 		File file=new File(Constant.FILE_PATH_DOWNLOADED+fileName);
-		do
+		
+		while(count<=timeInMinutes)
 		{
 			if(file.exists() && !file.isDirectory())
 			{
 				logger.info("File Exist");
 				return true;
 			}
+			logger.info("File Exist");
 			count++;
 		}
-		while(count<=timeInMinutes);
 			
 		return false;
 	}
@@ -147,8 +148,8 @@ public class DownloadVerifier
 	{
 		logger.info("======== In Read File Data ========");
 		logger.info("File Path ::=> " + path);
-		Scanner scanner = new Scanner(new File(path)).useDelimiter("\\Z");
-		String contents = scanner.next();
+		Scanner scanner = new Scanner(new File(path));
+		String contents = scanner.useDelimiter("\\Z").next();
 		logger.info(contents);
 		scanner.close();
 		return contents;

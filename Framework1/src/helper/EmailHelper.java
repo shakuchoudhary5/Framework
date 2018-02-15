@@ -49,12 +49,12 @@ public class EmailHelper extends Task
 	}
 
 	
-	protected static String captureErrorScreen(String timeStemp) throws IOException
-	{
-		return captureErrorScreen(null, timeStemp);
-	}
+//	protected static String captureErrorScreen(String timeStemp) throws IOException
+//	{
+//		return captureErrorScreen(null, timeStemp);
+//	}
 
-	protected static String captureErrorScreen(String screenName, String timeStemp) throws IOException
+	protected static String captureErrorScreen(String timeStemp) throws IOException
 	{
 		String path = "";
 		if (!"No".equalsIgnoreCase(ApplicationProperties.getInstance().getProperty("report.with.screenshot")))
@@ -62,7 +62,7 @@ public class EmailHelper extends Task
 			try
 			{
 				WebDriver augmentedDriver = new Augmenter().augment(BaseTestScript.selenium);
-				path = BaseTestScript.screenshotPath + screenName + timeStemp + ".jpeg";
+				path = BaseTestScript.screenshotPath + timeStemp + ".jpeg";
 				File error = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
 				FileUtils.copyFile(error, new File(path));
 			}

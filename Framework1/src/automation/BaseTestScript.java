@@ -54,6 +54,7 @@ public class BaseTestScript
 		Reporter.log(line);
 		Reporter.log("Start Time: " + dateFormat.format(cal.getTime()));
 		Reporter.log(line);
+		readScreenShotPath();
 	}
 	
 	@BeforeTest

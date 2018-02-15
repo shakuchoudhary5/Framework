@@ -14,17 +14,18 @@ public class CustomisedListener extends BaseTestScript implements ITestListener
 	@Override
 	public void onTestStart(ITestResult result) 
 	{
-		testcaseName = result.getInstanceName();
-	}
-	
-	@Override
-	public void onTestSuccess(ITestResult result) 
-	{
-
+		String packageName = result.getInstanceName();
+		String[] splitValue=packageName.split("tcRepository.");
+		testcaseName=splitValue[1];
 	}
 
 	@Override
-	public void onTestFailure(ITestResult result)
+	public void onTestSuccess(ITestResult result) {
+		
+	}
+
+	@Override
+	public void onTestFailure(ITestResult result) 
 	{
 		logger.info("***** Error " + result.getName() + " test has failed *****");
 		String testMethodName=result.getName().trim();
@@ -36,7 +37,7 @@ public class CustomisedListener extends BaseTestScript implements ITestListener
 			{
 				if(!("no").equals(ApplicationProperties.getInstance().getProperty("report.with.screenshot")))
 				{
-					String path = EmailHelper.captureErrorScreen(testMethodName + "_" + timestemp);
+					String path = EmailHelper.captureErrorScreen(testcaseName+"_"+testMethodName + "_" + timestemp);
 					timeout(1);
 					System.setProperty("org.uncommons.reportng.escape-output","false");
 					Reporter.log("<a title= \" Error ScreenShot... \" href=\"" + path
@@ -52,26 +53,22 @@ public class CustomisedListener extends BaseTestScript implements ITestListener
 	}
 
 	@Override
-	public void onTestSkipped(ITestResult result) 
-	{
-
-	}
-	
-	@Override
-	public void onTestFailedButWithinSuccessPercentage(ITestResult result) 
-	{
-		// This is just a piece of shit, ignore this
+	public void onTestSkipped(ITestResult result) {
+		
 	}
 
 	@Override
-	public void onStart(ITestContext context) 
-	{
-
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+		
 	}
 
 	@Override
-	public void onFinish(ITestContext context) 
-	{
+	public void onStart(ITestContext context) {
+		
+	}
+
+	@Override
+	public void onFinish(ITestContext context) {
 		
 	}
 

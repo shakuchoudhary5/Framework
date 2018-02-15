@@ -24,6 +24,9 @@
 	<classpathentry kind="lib" path="lib/guava-21.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Vievu"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Test_Automation"/>
-	<classpathentry kind="lib" path="D:/Shakuntala/Project/Framework1/lib/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="lib/client-combined-3.8.1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/selenium-server-standalone-3.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/client-combined-3.4.0-nodeps.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
