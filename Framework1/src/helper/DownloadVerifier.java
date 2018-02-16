@@ -35,7 +35,6 @@ public class DownloadVerifier
 			logger.info("File Exist");
 			count++;
 		}
-			
 		return false;
 	}
 	
