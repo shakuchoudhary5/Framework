@@ -26,5 +26,6 @@
 	<classpathentry kind="lib" path="lib/selenium-server-standalone-3.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/client-combined-3.4.0-nodeps.jar"/>
 	<classpathentry kind="lib" path="lib/velocity-dep-1.4.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Scrapper"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

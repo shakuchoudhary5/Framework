@@ -17,6 +17,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
@@ -64,24 +66,37 @@ public class BaseTestScript
 		try
 		{         
 			if (("ChromeDriver").equals(browser))
-				{
-					File driverPath = new File(BASE_PROJECT + "/src/resource/64BitChromeDriver/chromedriver.exe");
-					System.setProperty("webdriver.chrome.driver", driverPath.getAbsolutePath());
-				   
-					Map<String, Object> prefs = new HashMap<String, Object>();     // Create object of HashMap Class
-					//0- Default 1- Allow  2- Block
-					prefs.put("profile.content_settings.pattern_pairs.*.multiple-automatic-downloads", 1 ); //download multiple files
-					 
-					ChromeOptions options= new ChromeOptions();    // Create object of ChromeOption class
-					
-					
-					options.setExperimentalOption("prefs",prefs);  // Set the experimental option
-					options.addArguments("disable-infobars");      //disable automation info bar
-					options.addArguments("--start-maximized");     //maximize the browser when you launch it for the first time
-					options.addArguments("--disable -extensions");   //Disable Notifications
-					
-					selenium=new ChromeDriver(options);
-				}
+			{
+				File driverPath = new File(BASE_PROJECT + "/src/resource/64BitChromeDriver/chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", driverPath.getAbsolutePath());
+			   
+				Map<String, Object> prefs = new HashMap<String, Object>();     // Create object of HashMap Class
+				//0- Default 1- Allow  2- Block
+				prefs.put("profile.content_settings.pattern_pairs.*.multiple-automatic-downloads", 1 ); //download multiple files
+				 
+				ChromeOptions options= new ChromeOptions();    // Create object of ChromeOption class
+				
+				
+				options.setExperimentalOption("prefs",prefs);  // Set the experimental option
+				options.addArguments("disable-infobars");      //disable automation info bar
+				options.addArguments("--start-maximized");     //maximize the browser when you launch it for the first time
+				options.addArguments("--disable -extensions");   //Disable Notifications
+				
+				selenium=new ChromeDriver(options);
+			}
+			else if(("FirefoxDriver").equals(browser))
+			{
+				File driverPath = new File(BASE_PROJECT + "/src/resource/64BitFirefoxDriver/geckodriver.exe");
+				System.setProperty("webdriver.gecko.driver", driverPath.getAbsolutePath());
+				//  marinate/gecko driver logging
+				System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE,"true");
+				System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
+				    
+				FirefoxOptions options = new FirefoxOptions();
+				options.addArguments("-private");
+				
+				selenium = new FirefoxDriver(options);
+			}
 		}
 		catch (UnhandledAlertException alertException)
 		{

@@ -2,8 +2,6 @@ package automation;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
-
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
@@ -433,6 +431,54 @@ public class BaseFrameworkPage
 		{
 			logger.info(e.getMessage());
 			return 0;
+		}
+	}
+	
+	public boolean autoSuggestList(By textBox, String autoSuggestValue, By autoSuggestList, boolean verify) throws IOException
+	{
+		sendKeyWait(textBox, autoSuggestValue, true);
+		timeIntervel(1);
+		waitForParticularElement(autoSuggestList, Seconds);
+		if (isDisplayed(autoSuggestList))
+		{
+			if (verify)
+			{
+				return true;
+			}
+			else
+			{
+				moveToElement(autoSuggestList);
+				click(autoSuggestList);
+				return true;
+			}
+		}
+		else
+		{
+			selenium.findElement(textBox).sendKeys("\t");
+			return false;
+		}
+	}
+	
+	public void sendKeyWait(By by, String value, boolean withclear) throws IOException
+	{
+		waitForParticularElement(by,Seconds);
+		try
+		{
+			moveToElement(by);
+			timeIntervel();
+			if (withclear)
+			{
+				clear(by);
+			}
+			for (int i = 0; i < value.length(); i++)
+			{
+				selenium.findElement(by).sendKeys(String.valueOf(value.charAt(i)));
+			}
+
+		}
+		catch (NoSuchElementException e)
+		{
+			Assert.assertTrue(false, "Fail to send keys from text box : " + by + " on page : " + e.getMessage());
 		}
 	}
 }
